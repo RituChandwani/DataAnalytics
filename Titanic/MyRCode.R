@@ -54,9 +54,9 @@ fit <- rpart(Survived ~ Pclass+Sex+Age+SibSp+Parch+Fare+Embarked, data=train, me
 plot(fit)
 text(fit)
 
-install.packages('rattle')
-install.packages('rpart.plot')
-install.packages('RColorBrewer')
+#install.packages('rattle')
+#install.packages('rpart.plot')
+#install.packages('RColorBrewer')
 
 library(rattle)
 library(rpart.plot)
@@ -115,3 +115,12 @@ fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + T
              data=train, 
              method="class")
 fancyRpartPlot(fit)
+
+#install.packages("randomForest")
+library(randomForest)
+fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + Age + SibSp + Parch + Fare +
+                      Embarked + Title + FamilySize + FamilyID,
+                    data=train, 
+                    importance=TRUE, 
+                    ntree=2000)
+varImpPlot(fit)
